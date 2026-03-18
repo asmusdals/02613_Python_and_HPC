@@ -53,8 +53,8 @@ def reduce_dmi_df(df):
     df = df.copy()
 
     # Tider: object -> datetime
-    df["created"] = pd.to_datetime(df["created"])
-    df["observed"] = pd.to_datetime(df["observed"])
+    df["created"] = pd.to_datetime(df["created"], format="ISO8601")
+    df["observed"] = pd.to_datetime(df["observed"], format="ISO8601")
 
     # Få unikke værdier -> category
     df["parameterId"] = df["parameterId"].astype("category")
@@ -67,10 +67,9 @@ def reduce_dmi_df(df):
 
     return df
 
-
 def main():
     if len(sys.argv) != 2:
-        print("Usage: python3 week7_ex12.py /path/to/2023_01.csv.zip")
+        print("Usage: python3 ex_1.1.py /path/to/2023_01.csv.zip")
         sys.exit(1)
 
     zip_path = sys.argv[1]
@@ -95,16 +94,53 @@ def main():
     print("\nColumn summary:")
     summarize_columns(df2)
 
-
-    df3, t_zip = load_zip_direct(zip_path)
-    print(f"Read zip directly:      {t_zip:.3f} s")
-
     print("\n=== Exercise 1.4 ===")
-    df_reduced = reduce_dmi_df(df3)
-    print(f"Memory usage after reduction (MB): {df_memsize(df_reduced) / 1024**2:.2f}")
+    df_reduced = reduce_dmi_df(df2)
+    print(f"Memory usage after reduction (bytes): {df_memsize(df_reduced)}")
+    print(f"Memory usage after reduction (MB):    {df_memsize(df_reduced) / 1024**2:.2f}")
+
     print("\nColumn summary after reduction:")
-    summarize_columns(df_reduced)
-    
+    summarize_columns(df_reduced)    
 
 if __name__ == "__main__":
     main()
+
+
+# OUTPUT
+# n-62-27-23(s224473) $ python3 ex_1.1.py /dtu/projects/02613_2025/data/dmi/2023_01.csv.zip
+# === Exercise 1.1 ===
+# Unzip first + read_csv: 17.088 s
+# Read zip directly:      14.542 s
+# Fastest method: read zip directly with pandas
+
+# === Exercise 1.2 ===
+# DataFrame shape: (8142495, 7)
+# Memory usage (bytes): 2144438374
+# Memory usage (MB):    2045.10
+
+# Column summary:
+#           name    dtype   unique  size (MB)
+# 0      coordsx  float64      224         62
+# 1      coordsy  float64      219         62
+# 2      created   object  8142495        652
+# 3     observed   object    44640        597
+# 4  parameterId   object       47        546
+# 5    stationId    int64      247         62
+# 6        value  float64    11532         62
+# Total size: 2045.0958003997803 MB
+
+# === Exercise 1.4 ===
+# Memory usage after reduction (bytes): 268706914
+# Memory usage after reduction (MB):    256.26
+
+# Column summary after reduction:
+#           name                dtype   unique  size (MB)
+# 0      coordsx              float32      224         31
+# 1      coordsy              float32      219         31
+# 2      created  datetime64[ns, UTC]  8142495         62
+# 3     observed  datetime64[ns, UTC]    44640         62
+# 4  parameterId             category       47          7
+# 5    stationId                int32      247         31
+# 6        value              float32    11532         31
+# Total size: 256.258882522583 MB
+# (02613) ~/Documents/02613/week7
