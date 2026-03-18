@@ -49,6 +49,25 @@ def load_zip_direct(zip_path):
     return df, t1 - t0
 
 
+def reduce_dmi_df(df):
+    df = df.copy()
+
+    # Tider: object -> datetime
+    df["created"] = pd.to_datetime(df["created"])
+    df["observed"] = pd.to_datetime(df["observed"])
+
+    # Få unikke værdier -> category
+    df["parameterId"] = df["parameterId"].astype("category")
+
+    # Taltyper gøres mindre
+    df["coordsx"] = df["coordsx"].astype("float32")
+    df["coordsy"] = df["coordsy"].astype("float32")
+    df["value"] = df["value"].astype("float32")
+    df["stationId"] = pd.to_numeric(df["stationId"], downcast="integer")
+
+    return df
+
+
 def main():
     if len(sys.argv) != 2:
         print("Usage: python3 week7_ex12.py /path/to/2023_01.csv.zip")
@@ -76,6 +95,16 @@ def main():
     print("\nColumn summary:")
     summarize_columns(df2)
 
+
+    df3, t_zip = load_zip_direct(zip_path)
+    print(f"Read zip directly:      {t_zip:.3f} s")
+
+    print("\n=== Exercise 1.4 ===")
+    df_reduced = reduce_dmi_df(df3)
+    print(f"Memory usage after reduction (MB): {df_memsize(df_reduced) / 1024**2:.2f}")
+    print("\nColumn summary after reduction:")
+    summarize_columns(df_reduced)
+    
 
 if __name__ == "__main__":
     main()

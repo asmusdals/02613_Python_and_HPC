@@ -1,0 +1,26 @@
+
+Memory usage can be reduced by converting object columns with few 
+unique values (e.g. parameterId, stationId) to categorical types,
+ converting timestamp columns (created, observed) to datetime,
+  and downcasting numerical columns from float64 to float32 and
+   int64 to smaller integer types.
+
+
+
+=== Exercise 1.2 ===
+DataFrame shape: (8142495, 7)
+Memory usage (bytes): 2144438374
+Memory usage (MB):    2045.10
+
+Column summary:
+          name    dtype   unique  size (MB)
+0      coordsx  float64      224         62
+1      coordsy  float64      219         62
+2      created   object  8142495        652
+3     observed   object    44640        597
+4  parameterId   object       47        546
+5    stationId    int64      247         62
+6        value  float64    11532         62
+Total size: 2045.0958003997803 MB
+(02613) ~/Documents/02613/week7
+n-62-30-1(s224473) $ 
