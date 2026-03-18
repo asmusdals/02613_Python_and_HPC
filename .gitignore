@@ -1,0 +1,36 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.ipynb_checkpoints/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# VS Code
+.vscode/
+
+# Jupyter
+*.ipynb_checkpoints
+
+# Data files
+*.zip
+*.parquet
+*.feather
+*.h5
+
+# Generated outputs
+results/
+outputs/
+logs/
+tmp/
+
+# HPC
+*.out
+*.err
