@@ -1,0 +1,161 @@
+Til denne kører jeg bare autolab1.py med n = 4000000
+
+
+n-62-20-1(s224473) $ nsys stats glans_MANUAL.nsys-rep 
+Processing [glans_MANUAL.sqlite] with [/appl/cuda/11.8.0/nsight-systems-2022.4.2/host-linux-x64/reports/nvtxsum.py]... 
+SKIPPED: glans_MANUAL.sqlite does not contain NV Tools Extension (NVTX) data.
+
+Processing [glans_MANUAL.sqlite] with [/appl/cuda/11.8.0/nsight-systems-2022.4.2/host-linux-x64/reports/osrtsum.py]... 
+
+ ** OS Runtime Summary (osrtsum):
+
+ Time (%)  Total Time (ns)  Num Calls   Avg (ns)     Med (ns)    Min (ns)  Max (ns)   StdDev (ns)           Name         
+ --------  ---------------  ---------  -----------  -----------  --------  ---------  -----------  ----------------------
+     45.8        726979792          2  363489896.0  363489896.0   3768726  723211066  508722557.3  sem_wait              
+     39.9        632994975         21   30142617.9    1991592.0      2257  132396805   45895806.1  poll                  
+      7.3        115246330        648     177849.3     190883.0      2937     547459      68066.9  open64                
+      5.2         82037702        778     105446.9      17101.5      1035   34632154    1261513.6  ioctl                 
+      0.6         10210119        703      14523.6       4504.0      1007     232434      25481.1  read                  
+      0.4          6285078        615      10219.6       2300.0      1849    3669263     148139.5  mmap64                
+      0.3          4225847         45      93907.7       5632.0      2538     849976     211045.6  fopen                 
+      0.2          3266522        536       6094.3       5746.5      3648      14335       1441.1  munmap                
+      0.2          2666549         29      91950.0       1049.0      1001     790330     235559.2  fcntl                 
+      0.1           840490          4     210122.5     181834.5     53650     423171     186446.6  pthread_create        
+      0.0           731265         11      66478.6       6716.0      2510     359925     133126.6  fread                 
+      0.0           680222         14      48587.3      51745.0     12187      77581      18727.5  sem_timedwait         
+      0.0           435359         40      10884.0       8727.0      1404     107883      17838.0  fclose                
+      0.0           421866          8      52733.3       5023.5      4022     197029      87616.6  fopen64               
+      0.0           289999         21      13809.5       7376.0      3805     102069      20803.2  mmap                  
+      0.0           185329          8      23166.1      18346.0      1103      76345      23736.1  fgets                 
+      0.0           114051          1     114051.0     114051.0    114051     114051          0.0  pthread_cond_wait     
+      0.0            81857         20       4092.9       3396.0      1131      11993       2257.8  write                 
+      0.0            31856          6       5309.3       5512.0      2355       8045       2027.5  open                  
+      0.0            23463          3       7821.0       9245.0      4215      10003       3145.8  pipe2                 
+      0.0            18761          2       9380.5       9380.5      6446      12315       4150.0  socket                
+      0.0            17046          2       8523.0       8523.0      6565      10481       2769.0  pthread_cond_signal   
+      0.0             9646          1       9646.0       9646.0      9646       9646          0.0  connect               
+      0.0             6978          1       6978.0       6978.0      6978       6978          0.0  flockfile             
+      0.0             6352          2       3176.0       3176.0      2801       3551        530.3  pthread_cond_broadcast
+      0.0             4525          2       2262.5       2262.5      1607       2918        927.0  fwrite                
+      0.0             4086          2       2043.0       2043.0      1705       2381        478.0  sigaction             
+      0.0             2683          1       2683.0       2683.0      2683       2683          0.0  bind                  
+      0.0             2243          1       2243.0       2243.0      2243       2243          0.0  mprotect              
+      0.0             2110          2       1055.0       1055.0      1048       1062          9.9  dup                   
+      0.0             1486          1       1486.0       1486.0      1486       1486          0.0  listen                
+
+Processing [glans_MANUAL.sqlite] with [/appl/cuda/11.8.0/nsight-systems-2022.4.2/host-linux-x64/reports/cudaapisum.py]... 
+
+ ** CUDA API Summary (cudaapisum):
+
+ Time (%)  Total Time (ns)  Num Calls  Avg (ns)   Med (ns)   Min (ns)  Max (ns)  StdDev (ns)           Name         
+ --------  ---------------  ---------  ---------  ---------  --------  --------  -----------  ----------------------
+     66.1          3577009          1  3577009.0  3577009.0   3577009   3577009          0.0  cuMemcpyHtoD_v2       
+      9.4           509107          2   254553.5   254553.5    148573    360534     149879.1  cuModuleLoadDataEx    
+      6.6           356089          2   178044.5   178044.5    157657    198432      28832.3  cuMemAlloc_v2         
+      6.0           323257          2   161628.5   161628.5    158603    164654       4278.7  cuLinkComplete        
+      3.1           167020          1   167020.0   167020.0    167020    167020          0.0  cuMemcpyDtoH_v2       
+      2.8           151568          2    75784.0    75784.0     72138     79430       5156.2  cuLinkCreate_v2       
+      2.7           146469          9    16274.3    13514.0      9314     34662       9009.4  cuLaunchKernel        
+      2.0           106599        384      277.6      204.0       137      6973        378.9  cuGetProcAddress      
+      0.9            47973          1    47973.0    47973.0     47973     47973          0.0  cuMemGetInfo_v2       
+      0.4            19787          4     4946.8     4111.5      3742      7822       1941.5  cuStreamSynchronize   
+      0.1             3266          2     1633.0     1633.0      1159      2107        670.3  cuLinkDestroy         
+      0.1             3116          1     3116.0     3116.0      3116      3116          0.0  cuInit                
+      0.0              344          1      344.0      344.0       344       344          0.0  cuModuleGetLoadingMode
+      0.0              339          1      339.0      339.0       339       339          0.0  cuDeviceGetUuid_v2    
+
+Processing [glans_MANUAL.sqlite] with [/appl/cuda/11.8.0/nsight-systems-2022.4.2/host-linux-x64/reports/gpukernsum.py]... 
+
+ ** CUDA GPU Kernel Summary (gpukernsum):
+
+ Time (%)  Total Time (ns)  Instances  Avg (ns)  Med (ns)  Min (ns)  Max (ns)  StdDev (ns)      GridXYZ          BlockXYZ                                                     Name                                                
+ --------  ---------------  ---------  --------  --------  --------  --------  -----------  ----------------  --------------  ----------------------------------------------------------------------------------------------------
+     85.0           222334          1  222334.0  222334.0    222334    222334          0.0  125000    1    1    32    1    1  cudapy::__main__::reduce_kernel[abi:v1,cw51cXTLSUwv1sCUt9Uw11Ew0NRRQPKiLTj0gIGIFp_2b2oLQFEYYkHSQB1O…
+      4.7            12224          1   12224.0   12224.0     12224     12224          0.0  3907    1    1      32    1    1  cudapy::__main__::reduce_kernel[abi:v1,cw51cXTLSUwv1sCUt9Uw11Ew0NRRQPKiLTj0gIGIFp_2b2oLQFEYYkHSQB1O…
+      2.3             5919          2    2959.5    2959.5      2944      2975         21.9     1    1    1    1024    1    1  cudapy::numba::cuda::cudadrv::devicearray::_assign_kernel::_3clocals_3e::kernel[abi:v2,cw51cXTLSUwv…
+      2.0             5120          1    5120.0    5120.0      5120      5120          0.0   123    1    1    1024    1    1  cudapy::numba::cuda::cudadrv::devicearray::_assign_kernel::_3clocals_3e::kernel[abi:v2,cw51cXTLSUwv…
+      1.6             4193          1    4193.0    4193.0      4193      4193          0.0   123    1    1      32    1    1  cudapy::__main__::reduce_kernel[abi:v1,cw51cXTLSUwv1sCUt9Uw11Ew0NRRQPKiLTj0gIGIFp_2b2oLQFEYYkHSQB1O…
+      1.6             4192          1    4192.0    4192.0      4192      4192          0.0     4    1    1      32    1    1  cudapy::__main__::reduce_kernel[abi:v1,cw51cXTLSUwv1sCUt9Uw11Ew0NRRQPKiLTj0gIGIFp_2b2oLQFEYYkHSQB1O…
+      1.6             4160          1    4160.0    4160.0      4160      4160          0.0     1    1    1      32    1    1  cudapy::__main__::reduce_kernel[abi:v1,cw51cXTLSUwv1sCUt9Uw11Ew0NRRQPKiLTj0gIGIFp_2b2oLQFEYYkHSQB1O…
+      1.3             3455          1    3455.0    3455.0      3455      3455          0.0     4    1    1    1024    1    1  cudapy::numba::cuda::cudadrv::devicearray::_assign_kernel::_3clocals_3e::kernel[abi:v2,cw51cXTLSUwv…
+
+Processing [glans_MANUAL.sqlite] with [/appl/cuda/11.8.0/nsight-systems-2022.4.2/host-linux-x64/reports/gpumemtimesum.py]... 
+
+ ** GPU MemOps Summary (by Time) (gpumemtimesum):
+
+ Time (%)  Total Time (ns)  Count  Avg (ns)   Med (ns)   Min (ns)  Max (ns)  StdDev (ns)      Operation     
+ --------  ---------------  -----  ---------  ---------  --------  --------  -----------  ------------------
+     98.9          3366561      1  3366561.0  3366561.0   3366561   3366561          0.0  [CUDA memcpy HtoD]
+      1.1            39104      1    39104.0    39104.0     39104     39104          0.0  [CUDA memcpy DtoH]
+
+Processing [glans_MANUAL.sqlite] with [/appl/cuda/11.8.0/nsight-systems-2022.4.2/host-linux-x64/reports/gpumemsizesum.py]... 
+
+ ** GPU MemOps Summary (by Size) (gpumemsizesum):
+
+ Total (MB)  Count  Avg (MB)  Med (MB)  Min (MB)  Max (MB)  StdDev (MB)      Operation     
+ ----------  -----  --------  --------  --------  --------  -----------  ------------------
+     16.000      1    16.000    16.000    16.000    16.000        0.000  [CUDA memcpy HtoD]
+      0.500      1     0.500     0.500     0.500     0.500        0.000  [CUDA memcpy DtoH]
+
+Processing [glans_MANUAL.sqlite] with [/appl/cuda/11.8.0/nsight-systems-2022.4.2/host-linux-x64/reports/openmpevtsum.py]... 
+SKIPPED: glans_MANUAL.sqlite does not contain OpenMP event data.
+
+Processing [glans_MANUAL.sqlite] with [/appl/cuda/11.8.0/nsight-systems-2022.4.2/host-linux-x64/reports/khrdebugsum.py]... 
+SKIPPED: glans_MANUAL.sqlite does not contain KHR Extension (KHR_DEBUG) data.
+
+Processing [glans_MANUAL.sqlite] with [/appl/cuda/11.8.0/nsight-systems-2022.4.2/host-linux-x64/reports/khrdebuggpusum.py]... 
+SKIPPED: glans_MANUAL.sqlite does not contain GPU KHR Extension (KHR_DEBUG) data.
+
+Processing [glans_MANUAL.sqlite] with [/appl/cuda/11.8.0/nsight-systems-2022.4.2/host-linux-x64/reports/vulkanmarkerssum.py]... 
+SKIPPED: glans_MANUAL.sqlite does not contain Vulkan Debug Extension (Vulkan Debug Util) data.
+
+Processing [glans_MANUAL.sqlite] with [/appl/cuda/11.8.0/nsight-systems-2022.4.2/host-linux-x64/reports/vulkangpumarkersum.py]... 
+SKIPPED: glans_MANUAL.sqlite does not contain GPU Vulkan Debug Extension (GPU Vulkan Debug markers) data.
+
+Processing [glans_MANUAL.sqlite] with [/appl/cuda/11.8.0/nsight-systems-2022.4.2/host-linux-x64/reports/dx11pixsum.py]... 
+SKIPPED: glans_MANUAL.sqlite does not contain DX11 CPU debug markers.
+
+Processing [glans_MANUAL.sqlite] with [/appl/cuda/11.8.0/nsight-systems-2022.4.2/host-linux-x64/reports/dx12gpumarkersum.py]... 
+SKIPPED: glans_MANUAL.sqlite does not contain DX12 GPU debug markers.
+
+Processing [glans_MANUAL.sqlite] with [/appl/cuda/11.8.0/nsight-systems-2022.4.2/host-linux-x64/reports/dx12pixsum.py]... 
+SKIPPED: glans_MANUAL.sqlite does not contain DX12 CPU debug markers.
+
+Processing [glans_MANUAL.sqlite] with [/appl/cuda/11.8.0/nsight-systems-2022.4.2/host-linux-x64/reports/wddmqueuesdetails.py]... 
+SKIPPED: glans_MANUAL.sqlite does not contain WDDM context data.
+
+Processing [glans_MANUAL.sqlite] with [/appl/cuda/11.8.0/nsight-systems-2022.4.2/host-linux-x64/reports/unifiedmemory.py]... 
+SKIPPED: glans_MANUAL.sqlite does not contain CUDA Unified Memory CPU page faults data.
+
+Processing [glans_MANUAL.sqlite] with [/appl/cuda/11.8.0/nsight-systems-2022.4.2/host-linux-x64/reports/unifiedmemorytotals.py]... 
+SKIPPED: glans_MANUAL.sqlite does not contain CUDA Unified Memory CPU page faults data.
+
+Processing [glans_MANUAL.sqlite] with [/appl/cuda/11.8.0/nsight-systems-2022.4.2/host-linux-x64/reports/umcpupagefaults.py]... 
+SKIPPED: glans_MANUAL.sqlite does not contain CUDA Unified Memory CPU page faults data.
+
+Processing [glans_MANUAL.sqlite] with [/appl/cuda/11.8.0/nsight-systems-2022.4.2/host-linux-x64/reports/openaccsum.py]... 
+SKIPPED: glans_MANUAL.sqlite does not contain OpenACC event data.
+
+(02613_2026) ~/Documents/02613/week10
+n-62-20-1(s224473) $ 
+
+
+
+Kort svar du kan skrive
+
+After manually transferring the input data to the GPU, the number of 
+memory transfers is greatly reduced. We now see only one host-to-device 
+copy and one device-to-host copy, instead of many repeated transfers.
+This is what we expected, since manually copying the data avoids wasted
+transfers and reduces overhead.
+
+På dansk:
+
+Efter manuel overførsel til GPU’en er antallet af dataoverførsler blevet
+kraftigt reduceret. Der er nu kun én kopi til GPU’en og én kopi tilbage
+til CPU’en i stedet for mange gentagne kopier. Det er præcis det, vi 
+forventede, fordi manuel kopiering undgår unødige dataoverførsler.
+
+Den helt korte version:
+
+Ja, det er som forventet: færre memory copies, mindre overhead og mere effektiv kørsel.
