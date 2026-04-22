@@ -100,6 +100,84 @@ bsub < job.sh
 
 Then inspect output files such as `job_<jobid>.out` and `job_<jobid>.err`.
 
+## Job arrays on DTU HPC
+
+Use `job arrays` when the same script should run many times with the same resource request but different input files, seeds, or parameter values. Prefer arrays over many manual `bsub` submissions for many-input workloads.
+
+Typical array forms:
+
+```bash
+#BSUB -J sweep[1-10]
+#BSUB -J sweep[1-100:5]
+#BSUB -J files[1-20]
+```
+
+The array index is usually read from the LSF job index in shell or Python and used to select the input or parameter for that run.
+
+Operational rules:
+
+- If the same script must run over many files or parameter combinations, propose a `job array` first.
+- Use arrays only when each element has the same program shape and resource requirements.
+- For large arrays, be deliberate about cluster load, output layout, and debugging before submitting hundreds or thousands of jobs.
+- Avoid email notifications for large arrays by default.
+
+## Job dependencies on DTU HPC
+
+Use dependencies when work is naturally a pipeline, for example GPU preprocessing followed by CPU analysis, resume-after-timeout workflows, or many jobs first and one collecting analysis job after. Prefer `-w` dependencies over manual waiting when one step depends on another.
+
+Common dependency forms:
+
+```bash
+bsub -w "done(12345)" < collect.sh
+bsub -w "done(preprocess)" < analyze.sh
+bsub -w "ended(12345)" < inspect_any_result.sh
+bsub -w "exit(12345)" < handle_failure.sh
+bsub -w "started(12345)" < overlap_stage.sh
+```
+
+Dependencies can target a single job or an entire array by job ID or job name, which is useful when one follow-up job should wait until all array elements have finished.
+
+Operational rules:
+
+- If one step depends on another, propose `-w` instead of manual resubmission or polling.
+- If output must be combined after an array, propose a separate dependent collection job.
+- Use dependencies as the default orchestration pattern for multi-step HPC pipelines.
+
+## Monitoring and debugging on DTU HPC
+
+Use these commands to inspect status, arrays, dependencies, and live output:
+
+```bash
+bstat
+bjobs -A
+bpeek <jobid>
+bpeek <jobid>[index]
+bjdepinfo <jobid>
+bkill <jobid>
+bkill <jobid>[index]
+```
+
+Quick reference:
+
+- `bstat`: short cluster and queue status overview.
+- `bjobs -A`: inspect job arrays and their element-level states.
+- `bpeek <jobid>` or `bpeek <jobid>[index]`: inspect live stdout/stderr for a job or a single array element.
+- `bjdepinfo <jobid>`: inspect dependency relationships for a job.
+- `bkill <jobid>` or `bkill <jobid>[index]`: stop a whole job, a whole array, or a specific array element.
+
+Important job states:
+
+- `PEND`: job is queued and waiting for resources or conditions.
+- `RUN`: job is currently running.
+- `DONE`: job finished successfully.
+- `EXIT`: job ended with an error or failed condition.
+
+Operational rules:
+
+- If the user is working with arrays, suggest `bjobs -A` for overview and `bpeek` for targeted inspection.
+- If a pipeline does not start as expected, inspect it with `bjdepinfo` before resubmitting jobs.
+- If only part of an array is problematic, inspect or stop the specific array elements instead of killing everything immediately.
+
 ## GPU jobs on DTU HPC
 
 For GPU work, use the updated course environment:
@@ -141,6 +219,21 @@ GPU-specific notes:
 - Use `#BSUB -R "select[gpu80gb]"` when a specific GPU type is required.
 - The example walltime is `00:30`; the slide notes GPU jobs can run up to 24 hours depending on the job setup and limits in the queue.
 - Store output in a dedicated folder such as `batch_output/`.
+
+Week 10 GPU notes:
+
+- Some course material also references interactive GPU work nodes such as `voltash`, `sxm2sh`, and `a100sh` for quick testing or setup before batch submission.
+- Some week 10 examples reference queue `c02613`; prefer the queue required by the specific exercise or current cluster instructions, but keep the explicit GPU request and minimum `-n 4` rule.
+- For CUDA-style kernels, block reduction means reducing inside each thread block first, then writing one partial result per block and combining those partial outputs afterward.
+- For shared memory in Numba CUDA code, a common pattern is `cuda.shared.array(N, dtype=data.dtype)`.
+- For CuPy code, the standard import is `import cupy as cp`.
+
+Operational GPU rules:
+
+- If the user wants quick GPU experiments before submitting a full batch job, mention the relevant interactive GPU node commands from the course material.
+- If the assignment mentions `c02613`, follow that course-specific queue; otherwise keep the repo's explicit GPU batch template.
+- If the task involves CUDA kernels, consider shared memory and block-local reduction before proposing slower global-memory-heavy patterns.
+- If the task uses a NumPy-like GPU array workflow rather than custom kernels, consider CuPy first.
 
 When creating GPU scripts in this repo, prefer an explicit GPU-oriented shell script instead of reusing a CPU script unchanged.
 

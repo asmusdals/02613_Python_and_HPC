@@ -1,0 +1,13 @@
+#!/bin/bash
+#BSUB -J ex4[1-5]
+#BSUB -q hpc
+#BSUB -n 1
+#BSUB -W 10
+#BSUB -R "span[hosts=1]"
+#BSUB -R "rusage[mem=2GB]"
+#BSUB -M 2GB
+#BSUB -w done(array[*])
+#BSUB -o ex4_%J.out
+#BSUB -e ex4_%J.err
+
+echo "hej"
