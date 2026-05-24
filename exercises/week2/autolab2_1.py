@@ -30,3 +30,9 @@ print(listsum(a))
 print(deduplicate([1,2,3,4,5,1,2,3]))
 print(sorttuples([(1, 3), (2, 2), (3, 1)]))
 print(squarecubes([1,2,3,4]))
+
+def listsum(a):
+    sum = 0
+    for i in a:
+        sum += a
+    return a
