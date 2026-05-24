@@ -287,3 +287,8 @@ Use `context_folder/` for deeper reference if details are missing, especially:
 - `context_folder/template_bash.sh`
 - `context_folder/initializing_conda_env`
 - `context_folder/File transfer tofrom HPC.html`
+
+TILFØJELSE 
+
+Add lscpu to the job script in order to print information on the CPU type. You can then check what was printed in `sleeper_XXXXXX.out' after the job finishes.
+
