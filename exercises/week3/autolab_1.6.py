@@ -56,3 +56,11 @@ plt.legend()
 plt.grid(True, which="both")
 plt.tight_layout()
 plt.show()
+
+
+
+# The increase in performance while the row still fits in the 
+# L1 is likely due to the Python's overhead dominating the 
+# time measurements. This is the price we pay for using Python. 
+# Otherwise, we do observe that performance decreases in stair 
+# step fashion around cache boundaries, as expected. 
