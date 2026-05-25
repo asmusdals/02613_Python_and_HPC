@@ -24,6 +24,9 @@ def outer(x, y):
     # # automatisk udvide y til shape (1,m) så vi får en matrix med 
     # shape (n,m) som er det ønskede output.
 
-
 def distmat_1d(x,y):
     return abs(x[:,None] - y)
+
+
+
+
