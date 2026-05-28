@@ -20,3 +20,24 @@ conda activate 02613                                  # Aktiver kursus-miljø
 time python -u pi_serial.py
 time python -u pi_fully_parallel.py
 time python -u pi_chunked_parallel.py
+
+
+# resultater: 
+# Note on expected timings:
+# The fully parallel version can be much slower than the serial version because it
+# creates one multiprocessing task per sample. Each task does very little work, so
+# most of the runtime is spent on overhead: scheduling tasks, communicating between
+# processes, creating AsyncResult objects, and collecting results. This is visible
+# as high sys time. The chunked version is faster because each process gets one
+# large block of samples, so there are far fewer tasks and much less overhead.
+# real	0m0.748s
+# user	0m0.685s
+# sys	0m0.016s
+
+# real	1m34.258s
+# user	2m21.686s
+# sys	1m4.627s
+
+# real	0m0.263s
+# user	0m0.711s
+# sys	0m0.083s

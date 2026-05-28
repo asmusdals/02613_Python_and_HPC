@@ -1,0 +1,77 @@
+No GPU on this node, CUDA module not loaded
+CPU information from lscpu:
+Architecture:                            x86_64
+CPU op-mode(s):                          32-bit, 64-bit
+Address sizes:                           46 bits physical, 48 bits virtual
+Byte Order:                              Little Endian
+CPU(s):                                  24
+On-line CPU(s) list:                     0-23
+Vendor ID:                               GenuineIntel
+Model name:                              Intel(R) Xeon(R) CPU E5-2650 v4 @ 2.20GHz
+CPU family:                              6
+Model:                                   79
+Thread(s) per core:                      1
+Core(s) per socket:                      12
+Socket(s):                               2
+Stepping:                                1
+CPU(s) scaling MHz:                      97%
+CPU max MHz:                             2900.0000
+CPU min MHz:                             1200.0000
+BogoMIPS:                                4389.83
+Flags:                                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 ds_cpl vmx smx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault epb cat_l3 cdp_l3 invpcid_single pti intel_ppin ssbd ibrs ibpb stibp tpr_shadow vnmi flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 hle avx2 smep bmi2 erms invpcid rtm cqm rdt_a rdseed adx smap intel_pt xsaveopt cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local dtherm ida arat pln pts md_clear flush_l1d ibpb_exit_to_user
+Virtualization:                          VT-x
+L1d cache:                               768 KiB (24 instances)
+L1i cache:                               768 KiB (24 instances)
+L2 cache:                                6 MiB (24 instances)
+L3 cache:                                60 MiB (2 instances)
+NUMA node(s):                            2
+NUMA node0 CPU(s):                       0-11
+NUMA node1 CPU(s):                       12-23
+Vulnerability Gather data sampling:      Not affected
+Vulnerability Indirect target selection: Not affected
+Vulnerability Itlb multihit:             KVM: Mitigation: VMX disabled
+Vulnerability L1tf:                      Mitigation; PTE Inversion
+Vulnerability Mds:                       Mitigation; Clear CPU buffers; SMT disabled
+Vulnerability Meltdown:                  Mitigation; PTI
+Vulnerability Mmio stale data:           Mitigation; Clear CPU buffers; SMT disabled
+Vulnerability Reg file data sampling:    Not affected
+Vulnerability Retbleed:                  Not affected
+Vulnerability Spec rstack overflow:      Not affected
+Vulnerability Spec store bypass:         Mitigation; Speculative Store Bypass disabled via prctl
+Vulnerability Spectre v1:                Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnerability Spectre v2:                Mitigation; Retpolines; IBPB conditional; IBRS_FW; RSB filling; PBRSB-eIBRS Not affected; BHI Not affected
+Vulnerability Srbds:                     Not affected
+Vulnerability Tsa:                       Not affected
+Vulnerability Tsx async abort:           Mitigation; Clear CPU buffers; SMT disabled
+Vulnerability Vmscape:                   Mitigation; IBPB before exit to userspace
+
+Running n_proc from 1 to 24
+samples = 1000000
+repeats = 3
+max processes = 24
+n_proc= 1, time=  0.6511 s, speedup= 1.000, pi=3.142660
+n_proc= 2, time=  0.3300 s, speedup= 1.973, pi=3.143152
+n_proc= 3, time=  0.2219 s, speedup= 2.934, pi=3.143100
+n_proc= 4, time=  0.1700 s, speedup= 3.830, pi=3.142828
+n_proc= 5, time=  0.1378 s, speedup= 4.724, pi=3.142760
+n_proc= 6, time=  0.1172 s, speedup= 5.553, pi=3.141540
+n_proc= 7, time=  0.1025 s, speedup= 6.351, pi=3.141328
+n_proc= 8, time=  0.0924 s, speedup= 7.043, pi=3.143580
+n_proc= 9, time=  0.0840 s, speedup= 7.751, pi=3.143132
+n_proc=10, time=  0.0782 s, speedup= 8.324, pi=3.142376
+n_proc=11, time=  0.0730 s, speedup= 8.921, pi=3.141372
+n_proc=12, time=  0.0694 s, speedup= 9.384, pi=3.144420
+n_proc=13, time=  0.0662 s, speedup= 9.842, pi=3.141508
+n_proc=14, time=  0.0645 s, speedup=10.097, pi=3.140244
+n_proc=15, time=  0.0743 s, speedup= 8.761, pi=3.139292
+n_proc=16, time=  0.0606 s, speedup=10.742, pi=3.142164
+n_proc=17, time=  0.0595 s, speedup=10.948, pi=3.140292
+n_proc=18, time=  0.0786 s, speedup= 8.284, pi=3.143084
+n_proc=19, time=  0.0586 s, speedup=11.115, pi=3.140080
+n_proc=20, time=  0.0686 s, speedup= 9.497, pi=3.142740
+n_proc=21, time=  0.0738 s, speedup= 8.817, pi=3.141616
+n_proc=22, time=  0.0786 s, speedup= 8.286, pi=3.139868
+n_proc=23, time=  0.0772 s, speedup= 8.429, pi=3.143376
+n_proc=24, time=  0.0685 s, speedup= 9.499, pi=3.140788
+Saved data to exam_23_speedup.csv
+Saved plot to exam_23_speedup.png
